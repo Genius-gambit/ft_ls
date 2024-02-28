@@ -3,6 +3,7 @@ python3 -m pip install --user --upgrade pip
 if command -v apt-get &> /dev/null; then
     sudo apt-get install python3-venv
     sudo apt install python3-tk
+	sudo apt-get install valgrind
 fi
 python3 -m venv virtual_env
 source virtual_env/bin/activate
