@@ -2,16 +2,20 @@
 
 void	execute_R_flag(DIR *dr)
 {
-	struct dirent *en;
+	t_info			info;
 
-	if (dr)
+	if (get_n_dirs(dr, ".") > 0)
 	{
-		while ((en = readdir(dr)) != NULL)
-			if ((((strcmp(en->d_name, ".") == 0)
-			|| (strcmp(en->d_name, "..") == 0)) == 0)
-			&& en->d_name[0] != '.')
-				
-		closedir(dr);
+		info = get_listed_dirs(dr, ".");
+		info.currentindex = 0;
+		printf(".:\n");
+		dr = opendir(".");
+		print_listed_files(dr);
+		printf("\n");
+		printf("%s:\n", info.str[0]);
+		dr = opendir(info.str[0]);
+		print_listed_files(dr);
+		free_2d_str(info.str);
 	}
 }
 
